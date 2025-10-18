@@ -1,2 +1,5 @@
 .idea
 .DS_Store
+# Input files are ignored. The user should copy-paste their
+# input files into this project's folders
+*.txt
