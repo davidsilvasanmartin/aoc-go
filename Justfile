@@ -10,3 +10,6 @@ help:
 # Runs an advent of code solution
 run year day part input_file:
     go run . -y {{year}} -d {{day}} -p {{part}} -i {{input_file}}
+
+test:
+    go test ./...
