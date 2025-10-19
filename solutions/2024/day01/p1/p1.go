@@ -21,14 +21,14 @@ func Run(input string) (string, error) {
 	slices.Sort(firstSlice)
 	slices.Sort(secondSlice)
 
-	difs := 0
+	diffs := 0
 
 	for index, firstNum := range firstSlice {
 		secondNum := secondSlice[index]
-		difs += math.Abs(firstNum - secondNum)
+		diffs += math.Abs(firstNum - secondNum)
 	}
 
-	return strconv.Itoa(difs), nil
+	return strconv.Itoa(diffs), nil
 }
 
 // inputToIntSlices checks the input line by line and reads the ints that are present
