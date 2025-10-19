@@ -3,6 +3,7 @@ package p2
 import (
 	"strconv"
 
+	"github.com/davidsilvasanmartin/aoc-go/internal/slices"
 	"github.com/davidsilvasanmartin/aoc-go/solutions/2024/day02/common"
 )
 
@@ -37,31 +38,28 @@ func isSafe(report []int) bool {
 	// Try removing the element at index indexOfFirstElOfUnsafePair + 1 and perform a full check again
 	// This is for cases like {7, 1, 8, 9} that would get fixed if we remove the second element of
 	// the unsafe pair
-	fixedReport := append(report[:indexOfFirstElOfUnsafePair], report[indexOfFirstElOfUnsafePair+1:]...)
+	fixedReport := slices.RemoveAt(report, indexOfFirstElOfUnsafePair+1)
 	if len(fixedReport) < 2 {
 		return true
 	}
-	isAnyPairUnsafe := getIndexOfFirstElOfUnsafePair(fixedReport) != -1
-	if isAnyPairUnsafe {
-		return false
+	isReportSafe := getIndexOfFirstElOfUnsafePair(fixedReport) == -1
+	if isReportSafe {
+		return true
 	}
 
 	// Finally, try removing the element at index indexOfFirstElOfUnsafePair and perform a full check again
 	// This is for cases like {1, 7, 8, 9} that would get fixed if we remove the first element of
 	// the unsafe pair
-	fixedReport = append(report[:indexOfFirstElOfUnsafePair-1], report[indexOfFirstElOfUnsafePair:]...)
+	fixedReport = slices.RemoveAt(report, indexOfFirstElOfUnsafePair)
 	if len(fixedReport) < 2 {
 		return true
 	}
-	isAnyPairUnsafe = getIndexOfFirstElOfUnsafePair(fixedReport) != -1
-	if isAnyPairUnsafe {
-		return false
-	}
+	isReportSafe = getIndexOfFirstElOfUnsafePair(fixedReport) == -1
 
-	return true
+	return isReportSafe
 }
 
-// getIndexOfFirstUnsafePair returns the index of the first pair in the report that is deemed unsafe based on specific rules.
+// getIndexOfFirstElOfUnsafePair returns the index of the first pair in the report that is deemed unsafe based on specific rules.
 // If all pairs are safe, it returns -1.
 func getIndexOfFirstElOfUnsafePair(report []int) int {
 	first := report[0]

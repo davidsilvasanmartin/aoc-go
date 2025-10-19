@@ -50,8 +50,7 @@ func TestIsSafe(t *testing.T) {
 }
 
 func TestRun(t *testing.T) {
-	input := "1 2\n1 1\n2 1"
-	// TODO
+	input := "1 2 3\n1 1 1\n3 2 1"
 	want := "2"
 
 	got, err := Run(input)

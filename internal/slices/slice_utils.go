@@ -13,3 +13,10 @@ func StringsToIntegers(strings []string) ([]int, error) {
 	}
 	return ints, nil
 }
+
+func RemoveAt(a []int, idx int) []int {
+	b := make([]int, 0, len(a)-1)
+	b = append(b, a[:idx]...)
+	b = append(b, a[idx+1:]...)
+	return b
+}
