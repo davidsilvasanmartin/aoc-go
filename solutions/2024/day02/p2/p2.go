@@ -25,38 +25,25 @@ func Run(input string) (string, error) {
 }
 
 func isSafe(report []int) bool {
-	if len(report) < 2 {
+	if len(report) <= 2 {
 		return true
 	}
 
 	indexOfFirstElOfUnsafePair := getIndexOfFirstElOfUnsafePair(report)
-	if indexOfFirstElOfUnsafePair == -1 {
-		// If we have reached this point, it means that all pairs are safe.
-		return true
-	}
-
-	// Try removing the element at index indexOfFirstElOfUnsafePair + 1 and perform a full check again
-	// This is for cases like {7, 1, 8, 9} that would get fixed if we remove the second element of
-	// the unsafe pair
-	fixedReport := slices.RemoveAt(report, indexOfFirstElOfUnsafePair+1)
-	if len(fixedReport) < 2 {
-		return true
-	}
-	isReportSafe := getIndexOfFirstElOfUnsafePair(fixedReport) == -1
+	isReportSafe := indexOfFirstElOfUnsafePair == -1
 	if isReportSafe {
 		return true
 	}
 
-	// Finally, try removing the element at index indexOfFirstElOfUnsafePair and perform a full check again
-	// This is for cases like {1, 7, 8, 9} that would get fixed if we remove the first element of
-	// the unsafe pair
-	fixedReport = slices.RemoveAt(report, indexOfFirstElOfUnsafePair)
-	if len(fixedReport) < 2 {
-		return true
+	for i, _ := range report {
+		candidate := slices.RemoveAt(report, i)
+		isCandidateSafe := getIndexOfFirstElOfUnsafePair(candidate) == -1
+		if isCandidateSafe {
+			return true
+		}
 	}
-	isReportSafe = getIndexOfFirstElOfUnsafePair(fixedReport) == -1
 
-	return isReportSafe
+	return false
 }
 
 // getIndexOfFirstElOfUnsafePair returns the index of the first pair in the report that is deemed unsafe based on specific rules.

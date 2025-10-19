@@ -37,6 +37,8 @@ func TestIsSafe(t *testing.T) {
 		{name: "dec safe if last removed", input: []int{9, 8, 7, 1}, expected: true},
 		{name: "dec safe if last removed 2", input: []int{9, 8, 7, 7}, expected: true},
 		{name: "dec safe if last removed 3", input: []int{9, 8, 7, 8}, expected: true},
+		{name: "inc dec with small jumps", input: []int{5, 7, 5, 4}, expected: true},
+		{name: "dec inc with small jumps", input: []int{8, 6, 8, 9}, expected: true},
 	}
 
 	for _, tc := range tests {
