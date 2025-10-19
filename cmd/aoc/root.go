@@ -2,6 +2,7 @@ package aoc
 
 import (
 	"fmt"
+	"log/slog"
 	"os"
 	"time"
 
@@ -71,14 +72,49 @@ func dispatch(year int, day int, part int, input string) error {
 		return solutionNotFoundError(year, day, part)
 	}
 
+	start := time.Now()
 	out, err := runnerFunc(input)
+	elapsed := time.Since(start)
+
 	if err != nil {
 		return err
 	}
-	fmt.Println(out)
+
+	slog.Info("Runner finished successfully",
+		"year", year,
+		"day", day,
+		"part", part,
+		"duration", humanDuration(elapsed),
+	)
+	slog.Info("Result=" + out)
+
 	return nil
 }
 
 func solutionNotFoundError(year int, day int, part int) error {
 	return fmt.Errorf("solution not found for y=%d d=%d p=%d", year, day, part)
+}
+
+// humanDuration renders a time.Duration in a friendly, precise unit.
+func humanDuration(d time.Duration) string {
+	if d < time.Microsecond {
+		return fmt.Sprintf("%d nanoseconds", d.Nanoseconds())
+	}
+	if d < time.Millisecond {
+		us := d.Microseconds()
+		if us == 1 {
+			return "1 microsecond"
+		}
+		return fmt.Sprintf("%d microseconds", us)
+	}
+	if d < time.Second {
+		ms := d.Milliseconds()
+		if ms == 1 {
+			return "1 millisecond"
+		}
+		return fmt.Sprintf("%d milliseconds", ms)
+	}
+
+	secs := float64(d) / float64(time.Second)
+	return fmt.Sprintf("%.3f seconds", secs)
 }
