@@ -23,6 +23,10 @@ func TestIsSafe(t *testing.T) {
 		{name: "inc jump over max at end", input: []int{1, 2, 3, 7}, expected: false},
 		{name: "dec jump over max", input: []int{5, 1}, expected: false},
 		{name: "dec jump over max at end", input: []int{7, 6, 5, 1}, expected: false},
+		// Edge case where the two first numbers are equal, so IsStrictlyIncreasing(first, second) returns
+		// false. IsStrictlyIncreasing(second, third) also returns false. But the difference between first
+		// and second is 0, and therefore this test has to result in IsSafe=0
+		{name: "dec two first equal", input: []int{7, 7, 6}, expected: false},
 	}
 
 	for _, tc := range tests {

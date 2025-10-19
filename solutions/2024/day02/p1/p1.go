@@ -3,7 +3,6 @@ package p1
 import (
 	"strconv"
 
-	"github.com/davidsilvasanmartin/aoc-go/internal/math"
 	"github.com/davidsilvasanmartin/aoc-go/solutions/2024/day02/common"
 )
 
@@ -36,11 +35,7 @@ func isSafe(report []int) bool {
 	for i := 0; i < len(report)-1; i++ {
 		curr := report[i]
 		next := report[i+1]
-		if common.IsStrictlyIncreasing(curr, next) != inc {
-			return false
-		}
-		diff := math.Abs(next - curr)
-		if diff < 1 || diff > 3 {
+		if !common.IsPairSafe(curr, next, inc) {
 			return false
 		}
 	}

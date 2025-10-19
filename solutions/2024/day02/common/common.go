@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"strings"
 
+	"github.com/davidsilvasanmartin/aoc-go/internal/math"
 	"github.com/davidsilvasanmartin/aoc-go/internal/slices"
 )
 
@@ -28,4 +29,17 @@ func InputToIntSlices(input string) ([][]int, error) {
 // Returns false if first == second
 func IsStrictlyIncreasing(first int, second int) bool {
 	return (second - first) > 0
+}
+
+// IsPairSafe checks whether a pair of numbers in a report is safe,
+// according to the problem's definition
+func IsPairSafe(first int, second int, inc bool) bool {
+	if IsStrictlyIncreasing(first, second) != inc {
+		return false
+	}
+	diff := math.Abs(second - first)
+	if diff < 1 || diff > 3 {
+		return false
+	}
+	return true
 }
