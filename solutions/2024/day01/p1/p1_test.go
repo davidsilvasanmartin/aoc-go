@@ -6,8 +6,8 @@ import (
 )
 
 func TestRun(t *testing.T) {
-	input := "Hi"
-	want := "2"
+	input := "1 2\n3 3\n20 10"
+	want := "11"
 
 	got, err := Run(input)
 
@@ -20,9 +20,9 @@ func TestRun(t *testing.T) {
 }
 
 func TestInputToIntSlices(t *testing.T) {
-	input := " 1 22 "
-	wantFirstSlice := []int{1}
-	wantSecondSlice := []int{22}
+	input := " 1 22 \n   33  4"
+	wantFirstSlice := []int{1, 33}
+	wantSecondSlice := []int{22, 4}
 
 	gotFirstSlice, gotSecondSlice, err := inputToIntSlices(input)
 	if err != nil {

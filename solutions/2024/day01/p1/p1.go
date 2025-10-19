@@ -3,14 +3,37 @@ package p1
 import (
 	"bufio"
 	"fmt"
+	"slices"
 	"strconv"
 	"strings"
+
+	"github.com/davidsilvasanmartin/aoc-go/internal/math"
 )
 
 func Run(input string) (string, error) {
-	return strconv.Itoa(len(input)), nil
+	// Since inputToIntSlices checks that every line has exactly two integer numbers, we
+	// won't check that the first and second slices have the same size
+	firstSlice, secondSlice, err := inputToIntSlices(input)
+	if err != nil {
+		return "", err
+	}
+
+	slices.Sort(firstSlice)
+	slices.Sort(secondSlice)
+
+	difs := 0
+
+	for index, firstNum := range firstSlice {
+		secondNum := secondSlice[index]
+		difs += math.Abs(firstNum - secondNum)
+	}
+
+	return strconv.Itoa(difs), nil
 }
 
+// inputToIntSlices checks the input line by line and reads the ints that are present
+// in each line into two slices. It checks that every line of the input contains
+// exactly two integer numbers
 func inputToIntSlices(input string) ([]int, []int, error) {
 	firstSlice := []int{}
 	secondSlice := []int{}
