@@ -5,7 +5,7 @@ import (
 	"strconv"
 
 	"github.com/davidsilvasanmartin/aoc-go/internal/math"
-	"github.com/davidsilvasanmartin/aoc-go/solutions/2024/day01/common"
+	"github.com/davidsilvasanmartin/aoc-go/solutions/y24/d01/common"
 )
 
 func Run(input string) (string, error) {
