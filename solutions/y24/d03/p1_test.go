@@ -14,6 +14,14 @@ func TestRunP1(t *testing.T) {
 			{name: "none", input: "mul(3, 4).moi?{mul(3.4)}-204)mul{3,4)", expected: "0"},
 			{name: "end", input: ".moi?{}-204)mul(3,4)", expected: "12"},
 			{name: "several", input: "mul(3,4).moi,?{mul(3,4)}-204)mul(3,4)", expected: "36"},
+			{name: "consecutive", input: "mul(3,4)mul(3,4)mul(3,4)", expected: "36"},
+			{name: "mmul", input: "mmul(3,4)", expected: "12"},
+			{name: "mumul", input: "mumul(3,4)", expected: "12"},
+			{name: "mulmul", input: "mulmul(3,4)", expected: "12"},
+			{name: "mul(mul", input: "mul(mul(3,4)", expected: "12"},
+			{name: "mul(2mul", input: "mul(2mul(3,4)", expected: "12"},
+			{name: "mul(2,mul", input: "mul(2,mul(3,4)", expected: "12"},
+			{name: "mul(2,2mul", input: "mul(2,2mul(3,4)", expected: "12"},
 		}
 
 	for _, tc := range tests {

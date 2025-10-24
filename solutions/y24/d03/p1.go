@@ -35,61 +35,90 @@ func RunP1(input string) (string, error) {
 		} else if err != nil {
 			return "", err
 		}
+
 		switch state {
 		case LastReadTrash:
 			if r == 'm' {
 				state = LastReadM
 			}
 		case LastReadM:
-			if r == 'u' {
+			if r == 'm' {
+				state = LastReadM
+				firstNumAsStr = ""
+				lastNumAsStr = ""
+			} else if r == 'u' {
 				state = LastReadU
 			} else {
-				reset(&state, &firstNumAsStr, &lastNumAsStr)
+				resetP1State(&state, &firstNumAsStr, &lastNumAsStr)
 			}
 		case LastReadU:
-			if r == 'l' {
+			if r == 'm' {
+				state = LastReadM
+				firstNumAsStr = ""
+				lastNumAsStr = ""
+			} else if r == 'l' {
 				state = LastReadL
 			} else {
-				reset(&state, &firstNumAsStr, &lastNumAsStr)
+				resetP1State(&state, &firstNumAsStr, &lastNumAsStr)
 			}
 		case LastReadL:
-			if r == '(' {
+			if r == 'm' {
+				state = LastReadM
+				firstNumAsStr = ""
+				lastNumAsStr = ""
+			} else if r == '(' {
 				state = LastReadOpeningParen
 			} else {
-				reset(&state, &firstNumAsStr, &lastNumAsStr)
+				resetP1State(&state, &firstNumAsStr, &lastNumAsStr)
 			}
 		case LastReadOpeningParen:
-			if '0' <= r && r <= '9' {
+			if r == 'm' {
+				state = LastReadM
+				firstNumAsStr = ""
+				lastNumAsStr = ""
+			} else if '0' <= r && r <= '9' {
 				firstNumAsStr += string(r)
 				state = LastReadFirstNum
 			} else {
-				reset(&state, &firstNumAsStr, &lastNumAsStr)
+				resetP1State(&state, &firstNumAsStr, &lastNumAsStr)
 			}
 		case LastReadFirstNum:
-			if '0' <= r && r <= '9' {
+			if r == 'm' {
+				state = LastReadM
+				firstNumAsStr = ""
+				lastNumAsStr = ""
+			} else if '0' <= r && r <= '9' {
 				firstNumAsStr += string(r)
 			} else if r == ',' {
 				state = LastReadComma
 			} else {
-				reset(&state, &firstNumAsStr, &lastNumAsStr)
+				resetP1State(&state, &firstNumAsStr, &lastNumAsStr)
 			}
 		case LastReadComma:
-			if '0' <= r && r <= '9' {
+			if r == 'm' {
+				state = LastReadM
+				firstNumAsStr = ""
+				lastNumAsStr = ""
+			} else if '0' <= r && r <= '9' {
 				lastNumAsStr += string(r)
 				state = LastReadLastNum
 			} else {
-				reset(&state, &firstNumAsStr, &lastNumAsStr)
+				resetP1State(&state, &firstNumAsStr, &lastNumAsStr)
 			}
 		case LastReadLastNum:
-			if '0' <= r && r <= '9' {
+			if r == 'm' {
+				state = LastReadM
+				firstNumAsStr = ""
+				lastNumAsStr = ""
+			} else if '0' <= r && r <= '9' {
 				lastNumAsStr += string(r)
 			} else if r == ')' {
 				firstNum, _ := strconv.Atoi(firstNumAsStr)
 				lastNum, _ := strconv.Atoi(lastNumAsStr)
 				result += firstNum * lastNum
-				reset(&state, &firstNumAsStr, &lastNumAsStr)
+				resetP1State(&state, &firstNumAsStr, &lastNumAsStr)
 			} else {
-				reset(&state, &firstNumAsStr, &lastNumAsStr)
+				resetP1State(&state, &firstNumAsStr, &lastNumAsStr)
 			}
 		default:
 			return "", errors.New("invalid state reached")
@@ -99,7 +128,7 @@ func RunP1(input string) (string, error) {
 	return strconv.Itoa(result), nil
 }
 
-func reset(state *LastRead, firstNumAsString *string, lastNumAsStr *string) {
+func resetP1State(state *LastRead, firstNumAsString *string, lastNumAsStr *string) {
 	*state = LastReadTrash
 	*firstNumAsString = ""
 	*lastNumAsStr = ""
