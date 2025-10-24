@@ -1,8 +1,8 @@
-package p2
+package d02
 
 import "testing"
 
-func TestIsSafe(t *testing.T) {
+func TestIsSafeP2(t *testing.T) {
 	tests := []struct {
 		name     string
 		input    []int
@@ -43,7 +43,7 @@ func TestIsSafe(t *testing.T) {
 
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			got := isSafe(tc.input)
+			got := isSafeP2(tc.input)
 			if !got == tc.expected {
 				t.Errorf("input=%v, got=%v, expected=%v", tc.input, got, tc.expected)
 			}
@@ -51,11 +51,11 @@ func TestIsSafe(t *testing.T) {
 	}
 }
 
-func TestRun(t *testing.T) {
+func TestRunP2(t *testing.T) {
 	input := "1 2 3\n1 1 1\n3 2 1"
 	want := "2"
 
-	got, err := Run(input)
+	got, err := RunP2(input)
 
 	if err != nil {
 		t.Fatalf("Run returned error: %v", err)

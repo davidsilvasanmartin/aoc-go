@@ -1,4 +1,4 @@
-package common
+package d02
 
 import (
 	"bufio"

@@ -1,4 +1,4 @@
-package p2
+package d01
 
 import (
 	"maps"
@@ -29,11 +29,11 @@ func TestBuildTimesSeenMap(t *testing.T) {
 	}
 }
 
-func TestRun(t *testing.T) {
+func TestRunP2(t *testing.T) {
 	input := "1 10\n1 1\n100 1"
 	want := "4"
 
-	got, err := Run(input)
+	got, err := RunP2(input)
 
 	if err != nil {
 		t.Fatalf("Run returned error: %v", err)

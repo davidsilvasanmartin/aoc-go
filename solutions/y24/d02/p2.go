@@ -1,14 +1,13 @@
-package p2
+package d02
 
 import (
 	"strconv"
 
 	"github.com/davidsilvasanmartin/aoc-go/internal/slices"
-	"github.com/davidsilvasanmartin/aoc-go/solutions/y24/d02/common"
 )
 
-func Run(input string) (string, error) {
-	reports, err := common.InputToIntSlices(input)
+func RunP2(input string) (string, error) {
+	reports, err := InputToIntSlices(input)
 	if err != nil {
 		return "", err
 	}
@@ -16,7 +15,7 @@ func Run(input string) (string, error) {
 	numOfSafeReports := 0
 
 	for _, report := range reports {
-		if isSafe(report) {
+		if isSafeP2(report) {
 			numOfSafeReports++
 		}
 	}
@@ -24,7 +23,7 @@ func Run(input string) (string, error) {
 	return strconv.Itoa(numOfSafeReports), nil
 }
 
-func isSafe(report []int) bool {
+func isSafeP2(report []int) bool {
 	if len(report) <= 2 {
 		return true
 	}
@@ -51,12 +50,12 @@ func isSafe(report []int) bool {
 func getIndexOfFirstElOfUnsafePair(report []int) int {
 	first := report[0]
 	second := report[1]
-	inc := common.IsStrictlyIncreasing(first, second)
+	inc := IsStrictlyIncreasing(first, second)
 
 	for i := 0; i < len(report)-1; i++ {
 		curr := report[i]
 		next := report[i+1]
-		if !common.IsPairSafe(curr, next, inc) {
+		if !IsPairSafe(curr, next, inc) {
 			return i
 		}
 	}

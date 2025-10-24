@@ -1,13 +1,11 @@
-package p1
+package d02
 
 import (
 	"strconv"
-
-	"github.com/davidsilvasanmartin/aoc-go/solutions/y24/d02/common"
 )
 
-func Run(input string) (string, error) {
-	reports, err := common.InputToIntSlices(input)
+func RunP1(input string) (string, error) {
+	reports, err := InputToIntSlices(input)
 	if err != nil {
 		return "", err
 	}
@@ -15,7 +13,7 @@ func Run(input string) (string, error) {
 	numOfSafeReports := 0
 
 	for _, report := range reports {
-		if isSafe(report) {
+		if isSafeP1(report) {
 			numOfSafeReports++
 		}
 	}
@@ -23,19 +21,19 @@ func Run(input string) (string, error) {
 	return strconv.Itoa(numOfSafeReports), nil
 }
 
-func isSafe(report []int) bool {
+func isSafeP1(report []int) bool {
 	if len(report) < 2 {
 		return true
 	}
 
 	first := report[0]
 	second := report[1]
-	inc := common.IsStrictlyIncreasing(first, second)
+	inc := IsStrictlyIncreasing(first, second)
 
 	for i := 0; i < len(report)-1; i++ {
 		curr := report[i]
 		next := report[i+1]
-		if !common.IsPairSafe(curr, next, inc) {
+		if !IsPairSafe(curr, next, inc) {
 			return false
 		}
 	}

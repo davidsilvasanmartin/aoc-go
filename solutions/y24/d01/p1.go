@@ -1,17 +1,16 @@
-package p1
+package d01
 
 import (
 	"slices"
 	"strconv"
 
 	"github.com/davidsilvasanmartin/aoc-go/internal/math"
-	"github.com/davidsilvasanmartin/aoc-go/solutions/y24/d01/common"
 )
 
-func Run(input string) (string, error) {
+func RunP1(input string) (string, error) {
 	// Since inputToIntSlices checks that every line has exactly two integer numbers, we
 	// won't check that the first and second slices have the same size
-	leftList, rightList, err := common.InputToIntSlices(input)
+	leftList, rightList, err := InputToIntSlices(input)
 	if err != nil {
 		return "", err
 	}

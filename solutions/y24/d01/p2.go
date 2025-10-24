@@ -1,13 +1,11 @@
-package p2
+package d01
 
 import (
 	"strconv"
-
-	"github.com/davidsilvasanmartin/aoc-go/solutions/y24/d01/common"
 )
 
-func Run(input string) (string, error) {
-	leftList, rightList, err := common.InputToIntSlices(input)
+func RunP2(input string) (string, error) {
+	leftList, rightList, err := InputToIntSlices(input)
 	if err != nil {
 		return "", err
 	}

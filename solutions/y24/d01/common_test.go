@@ -1,4 +1,4 @@
-package common
+package d01
 
 import (
 	"slices"

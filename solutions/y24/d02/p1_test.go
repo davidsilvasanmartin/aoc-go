@@ -1,8 +1,8 @@
-package p1
+package d02
 
 import "testing"
 
-func TestIsSafe(t *testing.T) {
+func TestIsSafeP1(t *testing.T) {
 	tests := []struct {
 		name     string
 		input    []int
@@ -25,13 +25,13 @@ func TestIsSafe(t *testing.T) {
 		{name: "dec jump over max at end", input: []int{7, 6, 5, 1}, expected: false},
 		// Edge case where the two first numbers are equal, so IsStrictlyIncreasing(first, second) returns
 		// false. IsStrictlyIncreasing(second, third) also returns false. But the difference between first
-		// and second is 0, and therefore this test has to result in IsSafe=0
+		// and second is 0, and therefore this test has to result in IsSafeP1=false
 		{name: "dec two first equal", input: []int{7, 7, 6}, expected: false},
 	}
 
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			got := isSafe(tc.input)
+			got := isSafeP1(tc.input)
 			if !got == tc.expected {
 				t.Errorf("input=%v, got=%v, expected=%v", tc.input, got, tc.expected)
 			}
@@ -39,11 +39,11 @@ func TestIsSafe(t *testing.T) {
 	}
 }
 
-func TestRun(t *testing.T) {
+func TestRunP1(t *testing.T) {
 	input := "1 2\n1 1\n2 1"
 	want := "2"
 
-	got, err := Run(input)
+	got, err := RunP1(input)
 
 	if err != nil {
 		t.Fatalf("Run returned error: %v", err)
