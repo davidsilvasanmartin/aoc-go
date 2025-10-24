@@ -40,6 +40,8 @@ func RunP1(input string) (string, error) {
 		case LastReadTrash:
 			if r == 'm' {
 				state = LastReadM
+				firstNumAsStr = ""
+				lastNumAsStr = ""
 			}
 		case LastReadM:
 			if r == 'm' {
