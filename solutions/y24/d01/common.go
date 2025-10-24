@@ -7,10 +7,10 @@ import (
 	"strings"
 )
 
-// InputToIntSlices checks the input line by line and reads the ints that are present
+// inputToIntSlices checks the input line by line and reads the ints that are present
 // in each line into two slices. It checks that every line of the input contains
 // exactly two integer numbers
-func InputToIntSlices(input string) ([]int, []int, error) {
+func inputToIntSlices(input string) ([]int, []int, error) {
 	firstSlice := []int{}
 	secondSlice := []int{}
 

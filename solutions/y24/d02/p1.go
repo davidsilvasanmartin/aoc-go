@@ -5,7 +5,7 @@ import (
 )
 
 func RunP1(input string) (string, error) {
-	reports, err := InputToIntSlices(input)
+	reports, err := inputToIntSlices(input)
 	if err != nil {
 		return "", err
 	}
@@ -28,12 +28,12 @@ func isSafeP1(report []int) bool {
 
 	first := report[0]
 	second := report[1]
-	inc := IsStrictlyIncreasing(first, second)
+	inc := isStrictlyIncreasing(first, second)
 
 	for i := 0; i < len(report)-1; i++ {
 		curr := report[i]
 		next := report[i+1]
-		if !IsPairSafe(curr, next, inc) {
+		if !isPairSafe(curr, next, inc) {
 			return false
 		}
 	}

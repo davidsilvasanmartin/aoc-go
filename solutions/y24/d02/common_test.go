@@ -9,7 +9,7 @@ func TestInputToIntSlices(t *testing.T) {
 	input := " 1 22 \n   33  4"
 	want := [][]int{{1, 22}, {33, 4}}
 
-	got, err := InputToIntSlices(input)
+	got, err := inputToIntSlices(input)
 	if err != nil {
 		t.Fatalf("Run returned error: %v", err)
 	}
@@ -32,7 +32,7 @@ func TestIsStrictlyIncreasing(t *testing.T) {
 
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			got := IsStrictlyIncreasing(tc.first, tc.second)
+			got := isStrictlyIncreasing(tc.first, tc.second)
 			if got != tc.expected {
 				t.Errorf("first=%v, second=%v, got=%v, expected=%v", tc.first, tc.second, got, tc.expected)
 			}
@@ -62,7 +62,7 @@ func TestIsPairSafe(t *testing.T) {
 
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			got := IsPairSafe(tc.first, tc.second, tc.inc)
+			got := isPairSafe(tc.first, tc.second, tc.inc)
 			if got != tc.expected {
 				t.Errorf("first=%v, second=%v, inc=%v, got=%v, expected=%v", tc.first, tc.second, tc.inc, got, tc.expected)
 			}

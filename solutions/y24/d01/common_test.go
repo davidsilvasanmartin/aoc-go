@@ -10,7 +10,7 @@ func TestInputToIntSlices(t *testing.T) {
 	wantFirstSlice := []int{1, 33}
 	wantSecondSlice := []int{22, 4}
 
-	gotFirstSlice, gotSecondSlice, err := InputToIntSlices(input)
+	gotFirstSlice, gotSecondSlice, err := inputToIntSlices(input)
 	if err != nil {
 		t.Fatalf("Run returned error: %v", err)
 	}

@@ -44,7 +44,7 @@ func TestIsSafeP2(t *testing.T) {
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
 			got := isSafeP2(tc.input)
-			if !got == tc.expected {
+			if got != tc.expected {
 				t.Errorf("input=%v, got=%v, expected=%v", tc.input, got, tc.expected)
 			}
 		})

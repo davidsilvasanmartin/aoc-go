@@ -5,7 +5,7 @@ import (
 )
 
 func RunP2(input string) (string, error) {
-	leftList, rightList, err := InputToIntSlices(input)
+	leftList, rightList, err := inputToIntSlices(input)
 	if err != nil {
 		return "", err
 	}

@@ -23,8 +23,8 @@ func TestIsSafeP1(t *testing.T) {
 		{name: "inc jump over max at end", input: []int{1, 2, 3, 7}, expected: false},
 		{name: "dec jump over max", input: []int{5, 1}, expected: false},
 		{name: "dec jump over max at end", input: []int{7, 6, 5, 1}, expected: false},
-		// Edge case where the two first numbers are equal, so IsStrictlyIncreasing(first, second) returns
-		// false. IsStrictlyIncreasing(second, third) also returns false. But the difference between first
+		// Edge case where the two first numbers are equal, so isStrictlyIncreasing(first, second) returns
+		// false. isStrictlyIncreasing(second, third) also returns false. But the difference between first
 		// and second is 0, and therefore this test has to result in IsSafeP1=false
 		{name: "dec two first equal", input: []int{7, 7, 6}, expected: false},
 	}
@@ -32,7 +32,7 @@ func TestIsSafeP1(t *testing.T) {
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
 			got := isSafeP1(tc.input)
-			if !got == tc.expected {
+			if got != tc.expected {
 				t.Errorf("input=%v, got=%v, expected=%v", tc.input, got, tc.expected)
 			}
 		})

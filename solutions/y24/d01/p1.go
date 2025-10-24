@@ -10,7 +10,7 @@ import (
 func RunP1(input string) (string, error) {
 	// Since inputToIntSlices checks that every line has exactly two integer numbers, we
 	// won't check that the first and second slices have the same size
-	leftList, rightList, err := InputToIntSlices(input)
+	leftList, rightList, err := inputToIntSlices(input)
 	if err != nil {
 		return "", err
 	}
