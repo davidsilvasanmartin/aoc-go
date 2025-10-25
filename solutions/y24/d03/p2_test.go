@@ -66,9 +66,9 @@ func TestRunP2(t *testing.T) {
 			{name: "do(don't", input: "do(don't()mul(3,4)", expected: "0"},
 			// don't - don't
 			{name: "dondon't", input: "dondon't()mul(3,4)", expected: "0"},
-			{name: "don'do", input: "don'don't()mul(3,4)", expected: "0"},
-			{name: "don'tdo", input: "don'tdon't()mul(3,4)", expected: "0"},
-			{name: "don't(do", input: "don't(don't()mul(3,4)", expected: "0"},
+			{name: "don'don't", input: "don'don't()mul(3,4)", expected: "0"},
+			{name: "don'tdon't", input: "don'tdon't()mul(3,4)", expected: "0"},
+			{name: "don't(don't", input: "don't(don't()mul(3,4)", expected: "0"},
 		}
 
 	for _, tc := range tests {
